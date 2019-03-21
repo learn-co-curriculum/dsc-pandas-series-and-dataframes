@@ -569,7 +569,7 @@ pd.to_datetime(df.DATE).head() #It is good practice to preview the results first
 
 Sometimes the above won't work and you'll have to explicitly pass how the date is formatted.  
 To do that, you have to use some datetime codes. Here's a preview of some of the most common ones:  
-<img src="strftime_codes.png" width=600>
+<img src="images/strftime_codes.png" width=600>
 
 To explicitly pass formatting parameters, preview your dates and write the appropriate codes.
 
