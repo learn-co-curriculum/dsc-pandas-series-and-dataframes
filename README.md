@@ -15,7 +15,7 @@ You will be able to:
 
 ## Pandas Data Types vs. Native Python Data Types
 
-As we'll see as we talk more about Object-Oriented Programming (OOP), using Pandas Series and DataFrames instead of built in Python datatypes can have a range of benefits.  Most importantly is that Series and DataFrames have a range of built in methods which make standard practices and procedures streamlined. This includes many of the methods we have investigated such as groupby, columns and value_counts.
+As we'll see as we talk more about Object-Oriented Programming (OOP), using Pandas Series and DataFrames instead of built in Python datatypes can have a range of benefits.  Most importantly is that Series and DataFrames have a range of built in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). It is impossible to know every method of pandas at any given time, nor should you devote much time to memorization. We will not deeply explain every pandas method in these upcoming lessons and labs, but a critical part of every data scientist's job is to investigate documentation to learn about components of these tools on your own.
 
 ## Setup
 
@@ -370,6 +370,8 @@ df.On_N_Line.value_counts(normalize=True)
 
 
 
+*If you have not seen `value_counts` before, this would be a good time to check out the [documentation for it](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html) !*
+
 ## Explanation
 Above we used the map method for pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not.  
 `df['On_N_Line'] = df.LINENAME.map(lambda x: 'N' in x)`
@@ -449,7 +451,7 @@ print(df.ENTRIES.dtype)
     int64
 
 
-Attempting to convert a string column to int or float will produce errors if there are actually non numeric characters
+Attempting to convert a string column to int or float will produce **errors** if there are actually non numeric characters
 
 
 ```python
