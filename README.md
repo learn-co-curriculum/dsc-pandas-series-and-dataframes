@@ -185,7 +185,7 @@ Let's start by filtering the data down to all stations for the N line. To do thi
 
 ### Defining Functions
 
-At this point, we will need to define some functions to perform data manipulation so that we can reuse them easily. In Python, we define a function using the `def` keyword. Afterwords, we give the function a name, followed by parentheses. Any required (or optional parameters) are specified within the parentheses, just as you would normally call a function. You then specify the functions behavior using a colon and an indentation, much the same way you would a for loop or conditional block. Finally, if you want your function to return something (as with the str.pop() method) as opposed to a function that simply does something in the background but returns nothing (such as list.append()), you must use the `return` keyword. Note that as soon as a function hits a point in execution where something is returned, the function would terminate and no further commands would be executed. In other words the `return` command both returns a value and forces termination of the function.
+At this point, we will need to define some functions to perform data manipulation so that we can reuse them easily. Let's review how to do this: In Python, we define a function using the `def` keyword. Afterwards, we give the function a name, followed by parentheses. Any required (or optional parameters) are specified within the parentheses, just as you would normally call a function. You then specify the function's behavior using a colon and an indentation, much the same way you would a for loop or conditional block. Finally, if you want your function to return something (as with the str.pop() method) as opposed to a function that simply does something in the background but returns nothing (such as list.append()), you must use the `return` keyword. Note that as soon as a function hits a point in execution where something is returned, the function would terminate and no further commands would be executed. In other words the `return` command both returns a value and forces termination of the function.
 
 
 ```python
@@ -375,7 +375,7 @@ df.On_N_Line.value_counts(normalize=True)
 ## Explanation
 Above we used the map method for pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not.  
 `df['On_N_Line'] = df.LINENAME.map(lambda x: 'N' in x)`
-This is shorter and equivalent to the above functions defined above. Lambda functions are often more convenient shorthand, but have less functionality then defining functions explicitly.
+This is shorter and equivalent to the above functions defined above. Lambda functions are often more convenient, but have less functionality then defining functions explicitly.
 
 ## Cleaning Column Names
 Sometimes, you have messy column names
@@ -426,7 +426,7 @@ df.info()
     memory usage: 16.8+ MB
 
 
-A common transformation needed is converting numbers stored as text to *float* or *integer* representations. In this cas ENTRIES and EXITS are appropriately *int64*, but to practice, we'll demonstrate changing that to a float and then back to an int.
+A common transformation needed is converting numbers stored as text to *float* or *integer* representations. In this case ENTRIES and EXITS are appropriately *int64*, but to practice, we'll demonstrate changing that to a float and then back to an int.
 
 
 ```python
