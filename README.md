@@ -375,7 +375,7 @@ df.On_N_Line.value_counts(normalize=True)
 ## Explanation
 Above we used the map method for pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not.  
 `df['On_N_Line'] = df.LINENAME.map(lambda x: 'N' in x)`
-This is shorter and equivalent to the above functions defined above. Lambda functions are often more convenient, but have less functionality then defining functions explicitly.
+This is shorter and equivalent to the above functions defined above. Lambda functions are often more convenient, but have less functionality than defining functions explicitly.
 
 ## Cleaning Column Names
 Sometimes, you have messy column names
