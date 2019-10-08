@@ -7,15 +7,15 @@ In this lesson, we're digging into Pandas Series and DataFrames - the two main d
 
 ## Objectives
 You will be able to:
-* Understand and explain what Pandas Series and DataFrames are and how they differ from dictionaries and lists
-* Create Series & DataFrames from dictionaries and lists
-* Manipulate columns in DataFrames (`df.rename()`, `df.drop()`) 
-* Manipulate the index in DataFrames (`df.reindex()`, `df.drop()`, `df.rename()`) 
-* Manipulate column datatypes 
+- Understand and explain what Pandas Series and DataFrames are and how they differ from dictionaries and lists
+- Create Series & DataFrames from dictionaries and lists
+- Manipulate columns in DataFrames (`df.rename()`, `df.drop()`) 
+- Manipulate the index in DataFrames (`df.reindex()`, `df.drop()`, `df.rename()`) 
+- Manipulate column datatypes 
 
 ## Pandas Data Types vs. Native Python Data Types
 
-As we talk more about Object-Oriented Programming (OOP), using Pandas Series and DataFrames instead of built-in Python datatypes can have a range of benefits. One of the most important benefit is that Series and DataFrames have a range of built-in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). It is impossible to know every method of pandas at any given time, nor should you devote much time to memorization. We will not deeply explain every pandas method in these upcoming lessons and labs, but a critical part of every Data Scientist's job is to investigate documentation to learn about components of these tools on your own.
+As we talk more about Object-Oriented Programming (OOP), using Pandas Series and DataFrames instead of built-in Python datatypes can have a range of benefits. One of the most important benefit is that Series and DataFrames have a range of built-in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). It is impossible to know every method of pandas at any given time, nor should you devote much time to memorization. We will not deeply explain every Pandas method in these upcoming lessons and labs, but a critical part of every Data Scientist's job is to investigate documentation to learn about components of these tools on your own.
 
 ## Setup
 
@@ -372,15 +372,15 @@ df.On_N_Line.value_counts(normalize=True)
 *If you have not seen `value_counts()` before, this would be a good time to check out the [documentation for it](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.value_counts.html) !*
 
 ## Explanation
-Above we used the `.map()` method for pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not: 
+Above we used the `.map()` method for Pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not: 
 
 `df['On_N_Line'] = df.LINENAME.map(lambda x: 'N' in x)` 
 
 
-This is shorter and equivalent to the above functions defined above. Lambda functions are often more convenient, but have less functionality than defining functions explicitly.
+This is shorter and equivalent to the functions defined above. Lambda functions are often more convenient, but have less functionality than defining functions explicitly.
 
 ## Cleaning Column Names
-Sometimes, you have messy column names
+Sometimes, you have messy column names.
 
 
 ```python
@@ -398,7 +398,7 @@ df.columns
 
 
 
-You might notice that foolishly, the `EXITS` column has a lot of annoying whitespace following it.
+You might notice that, foolishly, the `EXITS` column has a lot of annoying whitespace following it.
 We can quickly use a list comprehension to clean up all of the column names.
 
 ## Reformatting Column Types
@@ -453,7 +453,7 @@ print(df.ENTRIES.dtype)
     int64
 
 
-Attempting to convert a string column to int or float will produce **errors** if there are actually non numeric characters
+Attempting to convert a string column to int or float will produce **errors** if there are actually non-numeric characters
 
 
 ```python
@@ -681,7 +681,7 @@ df.head(2)
 
 
 ## Datetime Methods
-Now that we have converted the `DATE` field to a datetime object we can use some useful built-in methods.
+Now that we have converted the `DATE` field to a datetime object we can use some handy built-in methods.
 
 
 ```python
@@ -828,7 +828,7 @@ df.head()
 
 
 ## Dropping Columns
-You can also drop columns
+You can also drop columns.
 
 
 ```python
