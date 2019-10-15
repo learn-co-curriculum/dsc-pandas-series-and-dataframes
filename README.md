@@ -7,15 +7,17 @@ In this lesson, we're digging into Pandas Series and DataFrames - the two main d
 
 ## Objectives
 You will be able to:
-- Understand and explain what Pandas Series and DataFrames are and how they differ from dictionaries and lists
-- Create Series & DataFrames from dictionaries and lists
-- Manipulate columns in DataFrames (`df.rename()`, `df.drop()`) 
-- Manipulate the index in DataFrames (`df.reindex()`, `df.drop()`, `df.rename()`) 
-- Manipulate column datatypes 
 
-## Pandas Data Types vs. Native Python Data Types
+- Use the `.map()` and `.apply()` methods to apply a function to a pandas Series or DataFrame 
+- Perform operations to change the structure of pandas DataFrames 
+- Change the index of a pandas DataFrame 
+- Change data types of columns in pandas DataFrames 
 
-As we talk more about Object-Oriented Programming (OOP), using Pandas Series and DataFrames instead of built-in Python datatypes can have a range of benefits. One of the most important benefit is that Series and DataFrames have a range of built-in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). It is impossible to know every method of pandas at any given time, nor should you devote much time to memorization. We will not deeply explain every Pandas method in these upcoming lessons and labs, but a critical part of every Data Scientist's job is to investigate documentation to learn about components of these tools on your own.
+
+
+## Pandas data types vs. Native Python data types
+
+Using Pandas Series and DataFrames instead of built-in Python data types can have a range of benefits. One of the most important benefit is that Series and DataFrames have a range of built-in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/). It is impossible to know every method of pandas at any given time, nor should you devote much time to memorization. We will not deeply explain every Pandas method in these upcoming lessons and labs, but a critical part of every Data Scientist's job is to investigate documentation to learn about components of these tools on your own.
 
 ## Setup
 
@@ -182,7 +184,7 @@ This MTA turnstile dataset is a great place for us to get our hands dirty wrangl
 
 Let's start by filtering the data down to all stations for the N line. To do this, we'll need to extract all "N"s from the LINENAME column, or create a column indicating whether or not the stop is an N line stop.
 
-### Defining Functions
+### Define functions
 
 At this point, we will need to define some functions to perform data manipulation so that we can reuse them easily. Let's review how to do this: In Python, we define a function using the `def` keyword. Afterwards, we give the function a name, followed by parentheses. Any required (or optional parameters) are specified within the parentheses, just as you would normally call a function. You then specify the function's behavior using a colon and an indentation, much the same way you would a `for` loop or conditional block. Finally, if you want your function to return something (as with the `str.pop()` method) as opposed to a function that simply does something in the background but returns nothing (such as `list.append()`), you must use the `return` keyword. Note that as soon as a function hits a point in execution where something is returned, the function would terminate and no further commands would be executed. In other words the `return` command both returns a value and forces termination of the function.
 
@@ -194,7 +196,7 @@ def contains_n(text):
     else:
         return False
 
-#or the shorter, more pythonic:
+# Or the shorter, more pythonic way
 def contains_n(text):
     bool_val = 'N' in text
     return bool_val
@@ -202,7 +204,7 @@ def contains_n(text):
 
 
 ```python
-df['On_N_Line'] = df.LINENAME.map(contains_n)
+df['On_N_Line'] = df['LINENAME'].map(contains_n)
 df.head(2)
 ```
 
@@ -357,7 +359,7 @@ df.tail(2)
 
 
 ```python
-df.On_N_Line.value_counts(normalize=True)
+df['On_N_Line'].value_counts(normalize=True)
 ```
 
 
@@ -374,12 +376,12 @@ df.On_N_Line.value_counts(normalize=True)
 ## Explanation
 Above we used the `.map()` method for Pandas series. This allows us to pass a function that will be applied to each and every data entry within the series. As shorthand, we could also pass a lambda function to determine whether or not each row was on the N line or not: 
 
-`df['On_N_Line'] = df.LINENAME.map(lambda x: 'N' in x)` 
+`df['On_N_Line'] = df['LINENAME'].map(lambda x: 'N' in x)` 
 
 
 This is shorter and equivalent to the functions defined above. Lambda functions are often more convenient, but have less functionality than defining functions explicitly.
 
-## Cleaning Column Names
+## Cleaning column names
 Sometimes, you have messy column names.
 
 
@@ -401,7 +403,7 @@ df.columns
 You might notice that, foolishly, the `EXITS` column has a lot of annoying whitespace following it.
 We can quickly use a list comprehension to clean up all of the column names.
 
-## Reformatting Column Types
+## Reformatting column types
 Another common data munging technique can be reformatting column types. We first previewed column types above using the `df.info()` method, which we'll repeat here.
 
 
@@ -432,9 +434,14 @@ A common transformation needed is converting numbers stored as text to *float* o
 
 
 ```python
-print(df.ENTRIES.dtype) #We can also check an individual column type rather then all 
-df.ENTRIES = df.ENTRIES.astype(float) #Changing the column to float
-print(df.ENTRIES.dtype) #Checking our changes
+# We can also check an individual column type rather then all 
+print(df['ENTRIES'].dtype) 
+
+# Changing the column to float
+df['ENTRIES'] = df['ENTRIES'].astype(float) 
+
+# Checking our changes
+print(df['ENTRIES'].dtype) 
 ```
 
     int64
@@ -443,10 +450,10 @@ print(df.ENTRIES.dtype) #Checking our changes
 
 
 ```python
-#Converting Back
-print(df.ENTRIES.dtype) 
-df.ENTRIES = df.ENTRIES.astype(int)
-print(df.ENTRIES.dtype)
+# Converting Back
+print(df['ENTRIES'].dtype) 
+df['ENTRIES'] = df['ENTRIES'].astype(int)
+print(df['ENTRIES'].dtype)
 ```
 
     float64
@@ -457,7 +464,7 @@ Attempting to convert a string column to int or float will produce **errors** if
 
 
 ```python
-df.LINENAME = df.LINENAME.astype(int)
+df['LINENAME'] = df['LINENAME'].astype(int)
 ```
 
 
@@ -528,7 +535,7 @@ A slightly more complicated data type transformation is creating *date* or *date
 
 
 ```python
-df.DATE.dtype
+df['DATE'].dtype
 ```
 
 
@@ -543,9 +550,11 @@ This is the handiest of methods when converting strings to datetime objects.
 
 
 ```python
-#Often you can simply pass the series into this method.
-pd.to_datetime(df.DATE).head() #It is good practice to preview the results first
-#This prevents overwriting data if some error was produced. However everything looks good!
+# Often you can simply pass the series into this function 
+# It is good practice to preview the results first
+
+pd.to_datetime(df['DATE']).head() 
+# This prevents overwriting data if some error was produced. However everything looks good!
 ```
 
 
@@ -568,7 +577,8 @@ To explicitly pass formatting parameters, preview your dates and write the appro
 
 
 ```python
-df.DATE.iloc[0] #Another method for slicing series/dataframes
+# Another method for slicing series/dataframes
+df['DATE'].iloc[0] 
 ```
 
 
@@ -580,8 +590,8 @@ df.DATE.iloc[0] #Another method for slicing series/dataframes
 
 
 ```python
-#Notice we include delimiters (in this case /) between the codes.
-pd.to_datetime(df.DATE, format='%m/%d/%Y').head()
+# Notice we include delimiters (in this case /) between the codes 
+pd.to_datetime(df['DATE'], format='%m/%d/%Y').head()
 ```
 
 
@@ -598,10 +608,10 @@ pd.to_datetime(df.DATE, format='%m/%d/%Y').head()
 
 
 ```python
-#Actually apply and save our changes
-df.DATE = pd.to_datetime(df.DATE)
-print(df.DATE.dtype)
-#Preview updated dataframe
+# Actually apply and save our changes
+df['DATE'] = pd.to_datetime(df['DATE'])
+print(df['DATE'].dtype)
+# Preview updated dataframe
 df.head(2)
 ```
 
@@ -680,13 +690,13 @@ df.head(2)
 
 
 
-## Datetime Methods
+## Datetime methods
 Now that we have converted the `DATE` field to a datetime object we can use some handy built-in methods.
 
 
 ```python
-#dt stores all the built in datetime methods (only works for datetime columns)
-df.DATE.dt.day_name().head()
+# dt stores all the built in datetime methods (only works for datetime columns)
+df['DATE'].dt.day_name().head()
 ```
 
 
@@ -701,7 +711,7 @@ df.DATE.dt.day_name().head()
 
 
 
-## Renaming Columns
+## Renaming columns
 You can rename columns using dictionaries as follows:
 
 
@@ -827,12 +837,13 @@ df.head()
 
 
 
-## Dropping Columns
+## Dropping columns
 You can also drop columns.
 
 
 ```python
-df = df.drop('C/A', axis=1) #If you don't pass the axis=1 parameter, pandas will try and drop a row with the specified index
+# If you don't pass the axis=1 parameter, pandas will try and drop a row with the specified index
+df = df.drop('C/A', axis=1) 
 df.head()
 ```
 
@@ -947,7 +958,7 @@ df.head()
 
 
 
-## Setting a New Index
+## Setting a new index
 It can also be helpful to set an index such as when graphing.
 
 
