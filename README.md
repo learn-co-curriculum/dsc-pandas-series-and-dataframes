@@ -21,11 +21,11 @@ Built-in Python data types such as lists, dictionaries, and sets can be powerful
 
 Using pandas data types such as Series and DataFrames instead of built-in Python data types can address both of these issues. Series and DataFrames have a range of built-in methods which make standard practices and procedures streamlined. Some of these methods can result in dramatic performance gains. To read more about these methods, make sure to continuously reference the [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/).
 
-With built-in Python types, it is useful to know all of the available methods, since each of them is likely to come up at one point or another, and there aren't that many. **In pandas, by contrast, it is impossible to know every method at any given time, and you should not devote much time to memorization.** We will not deeply explain every pandas method in these upcoming lessons and labs. A critical part of every data scientist's job is to investigate documentation to learn about components of these tools on your own. When you are trying to do something new with your data, there will probably be a pandas method for it, and you'll work over time to get better at finding the appropriate method using the documentation, Google, and StackOverflow.
+With built-in Python types, it is useful to know all of the available methods, since each of them is likely to come up at one point or another, and there aren't that many. **In pandas, by contrast, it is impossible to know every method at any given time, and you should not devote much time to memorization.** We will not deeply explain every pandas method since a critical part of every data scientist's job is to investigate documentation to learn about components of these tools on your own. When you are trying to do something new with your data, there will probably be a pandas method for it, and you'll work over time to get better at finding the appropriate method using the documentation, Google, and StackOverflow.
 
 ## Setup
 
-This MTA turnstile dataset is a great place for us to get our hands dirty wrangling and cleaning some data! Here's the data dictionary if you want to know more about the dataset http://web.mta.info/developers/resources/nyct/turnstile/ts_Field_Description.txt  
+This MTA turnstile dataset is a great place for us to get our hands dirty wrangling and cleaning some data. Here's the data dictionary if you want to know more about the dataset http://web.mta.info/developers/resources/nyct/turnstile/ts_Field_Description.txt  
 
 Let's import the packages we need and load and preview the dataset.
 
@@ -727,7 +727,7 @@ for _, row in df.iterrows():
 df['On_N_Line'] = on_n_line
 ```
 
-Note that the above snippet is much more complicated than the `.map()` syntax AND the code would run more slowly because it is less efficient. **If you ever find yourself trying to write a `for` loop that loops over all rows in a DataFrame, you are probably doing it wrong!**
+Note that the above snippet is much more complicated than the `.map()` syntax AND the code would run more slowly because it is less efficient. **If you ever find yourself trying to write a `for` loop that loops over all rows in a DataFrame, you are probably doing it wrong.**
 
 As shorthand, since this function is only one line we could also pass a lambda function to determine whether or not each row was on the N line or not, rather than declaring a separate function: 
 
@@ -1521,7 +1521,7 @@ df
 
 
 
-Note that this behavior (not changing the contents of the dataframe unless you use `inplace=True` or reassign the variable) is not a mistake or oversight in pandas. It is a useful feature that lets you preview the outcome of an operation before permanently applying it! This is especially important if you are dropping data or transforming it in a way that is not reversible.
+Note that this behavior (not changing the contents of the dataframe unless you use `inplace=True` or reassign the variable) is not a mistake or oversight in pandas. It is a useful feature that lets you preview the outcome of an operation before permanently applying it. This is especially important if you are dropping data or transforming it in a way that is not reversible.
 
 ### Dropping Columns
 
@@ -2265,7 +2265,7 @@ pd.to_datetime(df['DATE']).head()
 
 
 
-That worked!
+That worked.
 
 Note that the `dtype` has changed from `object` to `datetime64[ns]`.
 
